@@ -7,8 +7,8 @@ function Square(props) {
   return (
     <button
       className={className}
+      data-pro={props.value}
       onClick={props.onClick}>
-      {props.value}
     </button>
   );
 }
@@ -67,7 +67,7 @@ class Game extends React.Component {
     if (calculateWinner(squares).winner || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? "X" : "O";
+    squares[i] = this.state.xIsNext ? "Red" : "Blue";
     this.setState({
       history: history.concat([
         {
@@ -126,7 +126,7 @@ class Game extends React.Component {
       if (winInfo.isDraw) {
         status = "Draw";
       } else {
-        status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+        status = "Next player: " + (this.state.xIsNext ? "Red" : "Blue");
       }
     }
 

@@ -29893,8 +29893,9 @@ function Square(props) {
   var className = 'square' + (props.highlight ? ' highlight' : '');
   return /*#__PURE__*/_react.default.createElement("button", {
     className: className,
+    "data-pro": props.value,
     onClick: props.onClick
-  }, props.value);
+  });
 }
 
 var Board = /*#__PURE__*/function (_React$Component) {
@@ -29984,7 +29985,7 @@ var Game = /*#__PURE__*/function (_React$Component2) {
         return;
       }
 
-      squares[i] = this.state.xIsNext ? "X" : "O";
+      squares[i] = this.state.xIsNext ? "Red" : "Blue";
       this.setState({
         history: history.concat([{
           squares: squares,
@@ -30042,7 +30043,7 @@ var Game = /*#__PURE__*/function (_React$Component2) {
         if (winInfo.isDraw) {
           status = "Draw";
         } else {
-          status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+          status = "Next player: " + (this.state.xIsNext ? "Red" : "Blue");
         }
       }
 

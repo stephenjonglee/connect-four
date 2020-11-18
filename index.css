@@ -56,4 +56,12 @@ ol, ul {
 .move-list-item-selected{
     float: left;
     font-weight: bold;
-} 
+}
+
+button.square[data-pro="Red"] {
+    background-color: red;
+}
+    
+button.square[data-pro="Blue"] {
+    background-color: blue;
+}
