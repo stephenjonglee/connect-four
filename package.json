@@ -1,0 +1,28 @@
+{
+  "name": "connect-four",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephenjonglee/connect-four.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephenjonglee/connect-four/issues"
+  },
+  "homepage": "https://github.com/stephenjonglee/connect-four#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
