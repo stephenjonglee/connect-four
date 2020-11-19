@@ -29965,7 +29965,7 @@ var Game = /*#__PURE__*/function (_React$Component2) {
     _this2 = _super2.call(this, props);
     _this2.state = {
       history: [{
-        squares: Array(9).fill(null)
+        squares: Array(42).fill(null)
       }],
       stepNumber: 0,
       xIsNext: true,
