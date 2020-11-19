@@ -32,10 +32,6 @@ ol, ul {
     width: 34px;
 }
   
-.square.highlight {
-    background: #ddd
-}
-  
 .square:focus {
     outline: none;
 }
@@ -58,12 +54,20 @@ ol, ul {
     font-weight: bold;
 }
 
-button.square[data-pro="Red"] {
+.square[data-pro="Red"] {
     background-color: red;
 }
     
-button.square[data-pro="Blue"] {
+.square[data-pro="Blue"] {
     background-color: blue;
+}
+
+.square[data-pro="Red"].highlight {
+    background: yellow;
+}
+
+.square[data-pro="Blue"].highlight {
+    background: yellow;
 }
 
 /*# sourceMappingURL=/connect-four.e31bb0bc.css.map */
