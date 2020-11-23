@@ -20,7 +20,7 @@ class Board extends React.Component {
       <Square
         key={i}
         value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
+        onClick={() => {this.props.onClick(i)}}
         highlight={winLine && winLine.includes(i)}
       />
     );
@@ -64,16 +64,103 @@ class Game extends React.Component {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
+
+    // column index
+    const col = i % 7;
+    // bottom square of the column
+    var bottom = 0;
+
+    // do nothing if winner is found
     if (calculateWinner(squares).winner || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? "Red" : "Blue";
+
+    // first column
+    if (col == 0) {
+      bottom = 35;
+      for (var index = bottom; index >= 0; index = index - 7) {
+        if (squares[index] !== "Red" && squares[index] !== "Blue") {
+          bottom = index;
+          squares[bottom] = this.state.xIsNext ? "Red" : "Blue";
+          index = -1;
+        }
+      }
+    }
+    // second column
+    else if (col == 1) {
+      bottom = 36;
+      for (var index = bottom; index >= 0; index = index - 7) {
+        if (squares[index] !== "Red" && squares[index] !== "Blue") {
+          bottom = index;
+          squares[bottom] = this.state.xIsNext ? "Red" : "Blue";
+          bottom = index;
+          index = -1;
+        }
+      }
+    }
+    // third column
+    else if (col == 2) {
+      bottom = 37;
+      for (var index = bottom; index >= 0; index = index - 7) {
+        if (squares[index] !== "Red" && squares[index] !== "Blue") {
+          bottom = index;
+          squares[bottom] = this.state.xIsNext ? "Red" : "Blue";
+          bottom = index;
+          index = -1;
+        }
+      }
+    }
+    // fourth column
+    else if (col == 3) {
+      bottom = 38;
+      for (var index = bottom; index >= 0; index = index - 7) {
+        if (squares[index] !== "Red" && squares[index] !== "Blue") {
+          bottom = index;
+          squares[bottom] = this.state.xIsNext ? "Red" : "Blue";
+          bottom = index;
+          index = -1;
+        }
+      }
+    }
+    // fifth column
+    else if (col == 4) {
+      bottom = 39;
+      for (var index = bottom; index >= 0; index = index - 7) {
+        if (squares[index] !== "Red" && squares[index] !== "Blue") {
+          bottom = index;
+          squares[bottom] = this.state.xIsNext ? "Red" : "Blue";
+          bottom = index;
+          index = -1;
+        }
+      }
+    }
+    // sixth column
+    else if (col == 5) {
+      bottom = 40;
+      for (index = bottom; index >= 0; index = index - 7) {
+        if (squares[index] !== "Red" && squares[index] !== "Blue") {
+          bottom = index;
+          squares[index] = this.state.xIsNext ? "Red" : "Blue";
+          index = -1;
+        }
+      }
+    }
+    // seventh column
+    else {
+      bottom = 41;
+      for (index = bottom; index >= 0; index = index - 7) {
+        if (squares[index] !== "Red" && squares[index] !== "Blue") {
+          squares[index] = this.state.xIsNext ? "Red" : "Blue";
+          index = -1;
+        }
+      }
+    }
     this.setState({
       history: history.concat([
         {
           squares: squares,
           // Store the index of the latest moved square
-          latestMoveSquare: i
+          latestMoveSquare: bottom
         }
       ]),
       stepNumber: history.length,
@@ -103,8 +190,8 @@ class Game extends React.Component {
 
     let moves = history.map((step, move) => {
       const latestMoveSquare = step.latestMoveSquare;
-      const col = 1 + latestMoveSquare % 3;
-      const row = 1 + Math.floor(latestMoveSquare / 3);
+      const col = 1 + latestMoveSquare % 7;
+      const row = 1 + Math.floor(latestMoveSquare / 6);
       const desc = move ?
         `Go to move #${move} (${col}, ${row})` :
         'Go to game start';

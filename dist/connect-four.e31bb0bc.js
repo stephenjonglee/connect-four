@@ -29919,7 +29919,7 @@ var Board = /*#__PURE__*/function (_React$Component) {
         key: i,
         value: this.props.squares[i],
         onClick: function onClick() {
-          return _this.props.onClick(i);
+          _this.props.onClick(i);
         },
         highlight: winLine && winLine.includes(i)
       });
@@ -29979,18 +29979,103 @@ var Game = /*#__PURE__*/function (_React$Component2) {
     value: function handleClick(i) {
       var history = this.state.history.slice(0, this.state.stepNumber + 1);
       var current = history[history.length - 1];
-      var squares = current.squares.slice();
+      var squares = current.squares.slice(); // column index
+
+      var col = i % 7; // bottom square of the column
+
+      var bottom = 0; // do nothing if winner is found
 
       if (calculateWinner(squares).winner || squares[i]) {
         return;
-      }
+      } // first column
 
-      squares[i] = this.state.xIsNext ? "Red" : "Blue";
+
+      if (col == 0) {
+        bottom = 35;
+
+        for (var index = bottom; index >= 0; index = index - 7) {
+          if (squares[index] !== "Red" && squares[index] !== "Blue") {
+            bottom = index;
+            squares[bottom] = this.state.xIsNext ? "Red" : "Blue";
+            index = -1;
+          }
+        }
+      } // second column
+      else if (col == 1) {
+          bottom = 36;
+
+          for (var index = bottom; index >= 0; index = index - 7) {
+            if (squares[index] !== "Red" && squares[index] !== "Blue") {
+              bottom = index;
+              squares[bottom] = this.state.xIsNext ? "Red" : "Blue";
+              bottom = index;
+              index = -1;
+            }
+          }
+        } // third column
+        else if (col == 2) {
+            bottom = 37;
+
+            for (var index = bottom; index >= 0; index = index - 7) {
+              if (squares[index] !== "Red" && squares[index] !== "Blue") {
+                bottom = index;
+                squares[bottom] = this.state.xIsNext ? "Red" : "Blue";
+                bottom = index;
+                index = -1;
+              }
+            }
+          } // fourth column
+          else if (col == 3) {
+              bottom = 38;
+
+              for (var index = bottom; index >= 0; index = index - 7) {
+                if (squares[index] !== "Red" && squares[index] !== "Blue") {
+                  bottom = index;
+                  squares[bottom] = this.state.xIsNext ? "Red" : "Blue";
+                  bottom = index;
+                  index = -1;
+                }
+              }
+            } // fifth column
+            else if (col == 4) {
+                bottom = 39;
+
+                for (var index = bottom; index >= 0; index = index - 7) {
+                  if (squares[index] !== "Red" && squares[index] !== "Blue") {
+                    bottom = index;
+                    squares[bottom] = this.state.xIsNext ? "Red" : "Blue";
+                    bottom = index;
+                    index = -1;
+                  }
+                }
+              } // sixth column
+              else if (col == 5) {
+                  bottom = 40;
+
+                  for (index = bottom; index >= 0; index = index - 7) {
+                    if (squares[index] !== "Red" && squares[index] !== "Blue") {
+                      bottom = index;
+                      squares[index] = this.state.xIsNext ? "Red" : "Blue";
+                      index = -1;
+                    }
+                  }
+                } // seventh column
+                else {
+                    bottom = 41;
+
+                    for (index = bottom; index >= 0; index = index - 7) {
+                      if (squares[index] !== "Red" && squares[index] !== "Blue") {
+                        squares[index] = this.state.xIsNext ? "Red" : "Blue";
+                        index = -1;
+                      }
+                    }
+                  }
+
       this.setState({
         history: history.concat([{
           squares: squares,
           // Store the index of the latest moved square
-          latestMoveSquare: i
+          latestMoveSquare: bottom
         }]),
         stepNumber: history.length,
         xIsNext: !this.state.xIsNext
@@ -30023,8 +30108,8 @@ var Game = /*#__PURE__*/function (_React$Component2) {
       var winner = winInfo.winner;
       var moves = history.map(function (step, move) {
         var latestMoveSquare = step.latestMoveSquare;
-        var col = 1 + latestMoveSquare % 3;
-        var row = 1 + Math.floor(latestMoveSquare / 3);
+        var col = 1 + latestMoveSquare % 7;
+        var row = 1 + Math.floor(latestMoveSquare / 6);
         var desc = move ? "Go to move #".concat(move, " (").concat(col, ", ").concat(row, ")") : 'Go to game start';
         return /*#__PURE__*/_react.default.createElement("li", {
           key: move
@@ -30145,7 +30230,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55777" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56582" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
